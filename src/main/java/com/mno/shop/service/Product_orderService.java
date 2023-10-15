@@ -41,7 +41,7 @@ public class Product_orderService {
         final String userEmail;
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
-        User user = userService.userfindByEmail(userEmail);
+        User user = userService.userfindByGmail(userEmail);
         return orderRepo.findAllByUser(user, Sort.by("id").descending());
     }
 
@@ -56,7 +56,7 @@ public class Product_orderService {
         final String userEmail;
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
-        User user = userService.userfindByEmail(userEmail);
+        User user = userService.userfindByGmail(userEmail);
         System.out.println(postorDto.getProduct_id()+" "+postorDto.getBulk());
         Product product = productService.getProduct(postorDto.getProduct_id()).orElse(null);
 
@@ -82,7 +82,7 @@ public class Product_orderService {
         final String userEmail;
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
-        User user = userService.userfindByEmail(userEmail);
+        User user = userService.userfindByGmail(userEmail);
 
         List<Product> findProducts = productService.getAllByOwner(user);
         List<Product_order> postorList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class Product_orderService {
         final String userEmail;
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
-        User user = userService.userfindByEmail(userEmail);
+        User user = userService.userfindByGmail(userEmail);
 
         Product_order postor1= orderRepo.findById(postor.getId()).orElse(null);
 

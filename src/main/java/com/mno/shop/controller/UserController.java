@@ -39,7 +39,7 @@ public class UserController {
                 .id(getu.getId())
                 .user_img(user.getUser_img())
                 .name(user.getName())
-                .email(user.getEmail())
+                .gmail(user.getGmail())
                 .password(user.getPassword())
                 .role(user.getRole())
                 .build();
@@ -68,9 +68,9 @@ public class UserController {
     }
 
 
-    @GetMapping("usereamil/{email}")
-    public User getUserEmail(@PathVariable ("email") String email){
-        return userService.userfindByEmail(email);
+    @GetMapping("usergmaill/{gmail}")
+    public User getUserEmail(@PathVariable ("email") String gmail){
+        return userService.userfindByGmail(gmail);
     }
 
     @GetMapping("user")
@@ -79,7 +79,7 @@ public class UserController {
 
        User userRe = User.builder()
                .user_img(user.getUser_img())
-               .email(user.getEmail())
+               .gmail(user.getGmail())
                .name(user.getName())
                .address(user.getAddress())
                .role(user.getRole())

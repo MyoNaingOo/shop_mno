@@ -14,7 +14,7 @@ public interface UserRepo extends JpaRepository<User,Long> {
 
     Optional<User> findByName(String name);
 
-    Optional<User> findByEmail(String email);
+    Optional<User> findByGmail(String gmail);
 
 
 
@@ -25,8 +25,8 @@ public interface UserRepo extends JpaRepository<User,Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE user u SET u.email = ?2 WHERE u.id= ?1",nativeQuery = true)
-    void changeEmail(Long id,String email);
+    @Query(value = "UPDATE user u SET u.gmail = ?2 WHERE u.id= ?1",nativeQuery = true)
+    void changeEmail(Long id,String gmail);
 
     @Modifying
     @Transactional

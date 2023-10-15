@@ -42,11 +42,11 @@ public class OtpService {
     public OtpDtoResponse authenticateByotp(OtpDtoRequest otpDtoRequest){
         Otp otp= findByOtp(otpDtoRequest.getOtp());
         System.out.println(otp.getEmail());
-        System.out.println(otpDtoRequest.getEmail());
+        System.out.println(otpDtoRequest.getGmail());
         otpRepo.delete(otp);
-        if (otpDtoRequest.getEmail().equals(otp.getEmail())){
+        if (otpDtoRequest.getGmail().equals(otp.getEmail())){
             String email = otp.getEmail();
-            User user = userService.userfindByEmail(email);
+            User user = userService.userfindByGmail(email);
 
             OtpDtoResponse otpDtoResponse;
             if (user == null){
@@ -70,7 +70,7 @@ public class OtpService {
             return otpDtoResponse;
         }else {
             return OtpDtoResponse.builder()
-                    .email(otpDtoRequest.getEmail())
+                    .email(otpDtoRequest.getGmail())
                     .checkotp(false)
                     .logined(false)
                     .massage("Not same Otp Try again")
@@ -81,12 +81,12 @@ public class OtpService {
     public OtpDtoResponse registerByotp(OtpDtoRequest otpDtoRequest) {
         Otp otp= findByOtp(otpDtoRequest.getOtp());
         System.out.println(otp.getEmail());
-        System.out.println(otpDtoRequest.getEmail());
+        System.out.println(otpDtoRequest.getGmail());
         otpRepo.delete(otp);
         OtpDtoResponse otpDtoResponse;
-        if (otpDtoRequest.getEmail().equals(otp.getEmail())){
+        if (otpDtoRequest.getGmail().equals(otp.getEmail())){
             String email = otp.getEmail();
-            User user = userService.userfindByEmail(email);
+            User user = userService.userfindByGmail(email);
 
 
                 otpDtoResponse = OtpDtoResponse.builder()
@@ -100,7 +100,7 @@ public class OtpService {
             return otpDtoResponse;
         }else {
             return OtpDtoResponse.builder()
-                    .email(otpDtoRequest.getEmail())
+                    .email(otpDtoRequest.getGmail())
                     .checkotp(false)
                     .logined(false)
                     .massage("email or otp is fail")

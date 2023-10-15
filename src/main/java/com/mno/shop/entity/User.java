@@ -30,7 +30,7 @@ public class  User implements UserDetails {
     private String password;
 
     @Column(unique = true,nullable = false)
-    private String email;
+    private String gmail;
 
     @Lob
     @Column(length = 500 )
@@ -53,7 +53,7 @@ public class  User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return gmail;
     }
 
     @Override

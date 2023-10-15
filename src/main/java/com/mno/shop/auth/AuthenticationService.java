@@ -29,15 +29,20 @@ public class AuthenticationService {
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .name(request.name)
-                .email(request.email)
+                .gmail(request.gmail)
                 .address(request.address)
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
+
+
         var savedUser = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
-        saveUserToken(savedUser, jwtToken);
-        otpService.sendOtp(request.getEmail(),jwtToken);
+
+        System.out.printf(jwtToken);
+
+                saveUserToken(savedUser, jwtToken);
+        otpService.sendOtp(request.getGmail(),jwtToken);
         return AuthenticationResponse.builder()
                 .user(savedUser)
                 .build();
@@ -46,16 +51,16 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        request.getGmail(),
                         request.getPassword()
                 )
         );
-        var user = userRepo.findByEmail(request.getEmail())
+        var user = userRepo.findByGmail(request.getGmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        otpService.sendOtp(request.getEmail(),jwtToken);
+        otpService.sendOtp(request.getGmail(),jwtToken);
 
         return AuthenticationResponse.builder()
                 .user(user)

@@ -28,8 +28,8 @@ public class UserService {
               () -> new UsernameNotFoundException("username not fonded")
       );
     }
-    public User userfindByEmail(String email){
-        return   userRepo.findByEmail(email).orElse(null);
+    public User userfindByGmail(String gmail){
+        return   userRepo.findByGmail(gmail).orElse(null);
     }
 
     public List<User> getUsers(){

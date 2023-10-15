@@ -70,8 +70,8 @@ public class ProductService {
         return productRepo.findAllByOwner(user,Sort.by("id").descending());
     }
 
-    public List<Product> findByEmail(String email){
-        User owner = userService.userfindByEmail(email);
+    public List<Product> findByEmail(String gmail){
+        User owner = userService.userfindByGmail(gmail);
         return getAllByOwner(owner);
     }
 

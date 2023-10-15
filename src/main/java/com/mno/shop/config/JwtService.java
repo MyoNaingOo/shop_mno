@@ -94,7 +94,7 @@ public class JwtService {
         Boolean isToken = Token.map(t -> !t.isExpired() && !t.isRevoked()).orElse(false);
         if (isToken){
             userEmail = extractUsername(jwt);
-            return userService.userfindByEmail(userEmail);
+            return userService.userfindByGmail(userEmail);
         }
 
         return null;

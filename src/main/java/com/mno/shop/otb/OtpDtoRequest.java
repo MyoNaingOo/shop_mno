@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OtpDtoRequest {
 
-    public String email;
+    public String gmail;
     public int otp;
 
 }

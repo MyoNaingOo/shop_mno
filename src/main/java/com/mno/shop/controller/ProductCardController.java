@@ -53,7 +53,7 @@ public class ProductCardController {
             if (product!= null) {
                 User resuser = User.builder()
                         .name(product.getOwner().getName())
-                        .email(product.getOwner().getEmail())
+                        .gmail(product.getOwner().getGmail())
                         .role(product.getOwner().getRole())
                         .build();
                 Product resProduct = Product.builder()
